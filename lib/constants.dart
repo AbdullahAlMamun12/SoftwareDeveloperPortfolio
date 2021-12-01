@@ -9,7 +9,8 @@ const cBgDarkColor = Color(0xFFEBEDFA);
 const cBadgeColor = Color(0xFFEE376E);
 const cGrayColor = Color(0xFF8793B2);
 const cTitleTextColor = Color(0xFF30384D);
-const cTextColor = Color(0xFF4D5875);
+const cTextColor = Color(0xFFFFFFFF);
 const cMainColor = Color(0xFF2eca7f);
+const cMainBgColor = Color(0x0f6a6a6a);
 
 const cDefaultPadding = 20.0;

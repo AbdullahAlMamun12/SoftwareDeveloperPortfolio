@@ -7,7 +7,6 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 
 import '../../constants.dart';
 import '../../responsive.dart';
-import 'side_menu_item.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({
@@ -19,7 +18,7 @@ class SideMenu extends StatelessWidget {
     return Container(
       height: double.infinity,
       padding: const EdgeInsets.only(top: kIsWeb ? cDefaultPadding : 0),
-      color: cBgLightColor,
+      color: cMainColor,
       child: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: cDefaultPadding),
@@ -27,13 +26,21 @@ class SideMenu extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Image.asset(
-                    "assets/images/Logo Outlook.png",
-                    width: 46,
+                  Container(decoration:const BoxDecoration(
+                    shape:BoxShape.circle,
+                    // borderRadius: BorderRadius.circular(100),
+                    image:  DecorationImage(
+                      image: AssetImage(
+                        "assets/images/photo.png",),
+                      fit: BoxFit.cover,
+                    ),
                   ),
+                    height: 100,
+                    width: 100,
+                  ).addNeumorphismCircle(),
                   const Spacer(),
                   // We don't want to show this close button on Desktop mood
-                  if (!Responsive.isDesktop(context)) const CloseButton(),
+                  if (!Responsive.isDesktop(context)) const CloseButton(color: Colors.white,),
                 ],
               ),
               const SizedBox(height: cDefaultPadding),
@@ -45,17 +52,14 @@ class SideMenu extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                color: cBgDarkColor,
+                color: cMainColor,
                 onPressed: () {},
                 icon: WebsafeSvg.asset("assets/Icons/Download.svg", width: 16),
                 label: const Text(
                   "Home",
                   style: TextStyle(color: cTextColor),
                 ),
-              ).addNeumorphism(
-                topShadowColor: Colors.white,
-                bottomShadowColor: const Color(0xFF234395).withOpacity(0.2),
-              ),
+              ).addNeumorphism(),
               const SizedBox(height: cDefaultPadding * 1.5),
               FlatButton.icon(
                 minWidth: double.infinity,
@@ -65,7 +69,7 @@ class SideMenu extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                color: cBgDarkColor,
+                color: cMainColor,
                 onPressed: () {},
                 icon: WebsafeSvg.asset("assets/Icons/Download.svg", width: 16),
                 label: const Text(
@@ -82,7 +86,7 @@ class SideMenu extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                color: cBgDarkColor,
+                color: cMainColor,
                 onPressed: () {},
                 icon: WebsafeSvg.asset("assets/Icons/Download.svg", width: 16),
                 label: const Text(
@@ -99,7 +103,7 @@ class SideMenu extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                color: cBgDarkColor,
+                color: cMainColor,
                 onPressed: () {},
                 icon: WebsafeSvg.asset("assets/Icons/Download.svg", width: 16),
                 label: const Text(
@@ -116,7 +120,7 @@ class SideMenu extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                color: cBgDarkColor,
+                color: cMainColor,
                 onPressed: () {},
                 icon: WebsafeSvg.asset("assets/Icons/Download.svg", width: 16),
                 label: const Text(
@@ -133,7 +137,7 @@ class SideMenu extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                color: cBgDarkColor,
+                color: const Color(0xFF2eca7f),
                 onPressed: () {},
                 icon: WebsafeSvg.asset("assets/Icons/Download.svg", width: 16),
                 label: const Text(

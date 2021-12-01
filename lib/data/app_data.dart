@@ -1,0 +1,1 @@
+List<String> navItemList = ["Home","Resume","Service","Portfolio","Blog","Contact",];
