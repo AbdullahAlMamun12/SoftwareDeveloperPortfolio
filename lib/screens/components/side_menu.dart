@@ -26,14 +26,19 @@ class SideMenu extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Container(decoration:const BoxDecoration(
+                  Container(decoration: BoxDecoration(
                     shape:BoxShape.circle,
                     // borderRadius: BorderRadius.circular(100),
-                    image:  DecorationImage(
+                    image: const DecorationImage(
                       image: AssetImage(
                         "assets/images/photo.png",),
                       fit: BoxFit.cover,
                     ),
+                    border: Border.all(
+                    width: 3,
+                    color: cMainColor,
+                    style: BorderStyle.solid,
+                  ),
                   ),
                     height: 100,
                     width: 100,

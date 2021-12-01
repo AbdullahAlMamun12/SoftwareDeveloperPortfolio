@@ -12,12 +12,13 @@ class NavButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text(title,style: TextStyle(color: isActive?Colors.black:Colors.grey),),
           Container(
             height: 2,
             width: 25,
-            margin: const EdgeInsets.all(5),
+            margin: const EdgeInsets.only(top: 5),
             decoration: BoxDecoration(
               color: isActive?cMainColor:Colors.transparent
             ),

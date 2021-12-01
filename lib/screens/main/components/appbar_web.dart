@@ -23,8 +23,9 @@ class WebAppBar extends StatelessWidget{
           ),
         ],
       ),
-      padding:const EdgeInsets.symmetric(horizontal: 100,vertical: 10),
-      child: Row(children:[
+      padding:const EdgeInsets.symmetric(horizontal: 100),
+      child: Row(
+        children:[
         const Text("Abdullah Al Mamun"),
         const Spacer(),
         Row(
