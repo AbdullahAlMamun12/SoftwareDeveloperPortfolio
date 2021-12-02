@@ -14,7 +14,18 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: cMainBgColor,
+      backgroundColor: cMainColor,
+      appBar: PreferredSize(
+        preferredSize: AppBar().preferredSize,
+        child:  SafeArea(
+          child: Responsive(
+            mobile: MobileTabAppBar(scaffoldKey: _scaffoldKey,),
+            tablet:MobileTabAppBar(scaffoldKey: _scaffoldKey,),
+            desktop: WebAppBar(),
+          ),
+        ),
+      ),
+      // backgroundColor: cMainBgColor,
       drawer: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 250),
         child: const SideMenu(),
@@ -22,24 +33,20 @@ class MainScreen extends StatelessWidget {
       key: _scaffoldKey,
             // appBar: AppBar(),
       body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/main_bg.png"),
-            fit: BoxFit.cover
-          )
-        ),
         height: size.height,
         width: size.width,
-        child: Stack(
+        decoration: BoxDecoration(
+            color: Colors.grey.shade200,
+            image: const DecorationImage(
+                image: AssetImage("assets/images/main_bg.png"),
+                fit: BoxFit.cover
+            )
+        ),
+        child: PageView(
           children: [
-            Align(
-              alignment: Alignment.topCenter,
-              child: Responsive(
-                mobile: MobileTabAppBar(scaffoldKey: _scaffoldKey,),
-                tablet:MobileTabAppBar(scaffoldKey: _scaffoldKey,),
-                desktop: WebAppBar(),
-              )
-            ),
+            HomeScreen(),
+            HomeScreen(),
+            HomeScreen(),
           ],
         ),
       ),
