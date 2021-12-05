@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../constants.dart';
 class MobileTabAppBar extends StatelessWidget {
@@ -16,7 +17,7 @@ class MobileTabAppBar extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Row(children: [
-          const Text("Abdullah Al Mamun",style: TextStyle(color: Colors.white),),
+          Text("Abdullah Al Mamun",style: GoogleFonts.montserrat(color: Colors.white,fontSize: 18,fontWeight: FontWeight.w400),),
           const Spacer(),
           IconButton(onPressed: (){
             scaffoldKey.currentState!.openDrawer();
