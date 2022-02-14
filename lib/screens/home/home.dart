@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/connect.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:portfolio_app/controller/ui_contorller.dart';
-import 'package:portfolio_app/screens/components/side_menu.dart';
 import 'package:portfolio_app/screens/home/component/bottom_container.dart';
 import 'package:portfolio_app/screens/home/component/top_container.dart';
+import 'package:portfolio_app/screens/main/components/common_card.dart';
 import 'package:portfolio_app/utils/url_luncher.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:portfolio_app/utils/utils.dart';
 
 import '../../constants.dart';
 import '../../responsive.dart';
@@ -52,95 +51,83 @@ class _HomeScreenState extends State<HomeScreen> {
         fontWeight: FontWeight.w400
     );
 
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body:  SingleChildScrollView(
-        controller: controller,
-        child: Card(
-        margin: EdgeInsets.only(right: updateSidePaddingSize(),left: updateSidePaddingSize(),top: AppBar().preferredSize.height+50 ,bottom: 20),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        elevation: 5,
-        child: Stack(
-          children: [
-            Column(
-             children: [
-               TopContainer(
-                 child: Responsive.isMobile(context)  || size!.width < 845
-                     ? Column(children: [
-                   photo(),
-                   const SizedBox(height: 20),
-                   title(),
-                 ])
-                     : Row(
-                   // runSpacing: 20,
-                   // spacing: 20,
-                   // crossAxisAlignment: WrapCrossAlignment.center,
-                   // alignment: WrapAlignment.center,
-                   children: [
-                     const Expanded(
-                       child: SizedBox(height: 220),
-                       flex: 5,
-                     ),
-                     // const SizedBox(width: 20,),
-                     // const Spacer(),
-                     Expanded(
-                       child: title(),
-                       flex: 11,),
-                   ],
-                 ),
-               ),
-               BottomContainer(
-                 child: Responsive.innerResponsive(
-                   context: context,
-                   mobile: Column(
-                     children: [
-                       about(),
-                       const SizedBox(height: 20),
-                       details(robotoTextStyle!),
-                     ],
-                   ),
-                   tablet: Row(
-                     children: [
-                       Expanded(
-                           flex:  size!.width > 710 ? 8 : 7,
-                           child: about()
-                       ),
-                       const SizedBox(width:20),
-                       Expanded(
-                         flex: size!.width >= 650 ? 10 : 8,
-                         child: details(robotoTextStyle!),
-                       ),
-                     ],
-                   ),
-                   desktop:  Row(
-                     children: [
-                       Expanded(
-                           flex: 8 ,
-                           child: about()
-                       ),
-                       const SizedBox(width:20),
-                       Expanded(
-                         flex: 8 ,
-                         child: details(robotoTextStyle!),
-                       ),
-                     ],
-                   ),
-                 ),
-               ),
-           ],),
-            if(Responsive.isTablet(context) && size!.width > 845 || Responsive.isDesktop(context))
-              Obx((){
-                return AnimatedPositioned(
-                  duration:const Duration(milliseconds: 250),
-                  top: uiController.isHoverProfileImage.value?30:40,
-                  left: 40,
-                  child: photo(),
-                );
-              })
-          ],)
-      ),
+    return CommonCard(
+      controller: controller,
+      child: Stack(
+        children: [
+          Column(
+            children: [
+              TopContainer(
+                child: Responsive.isMobile(context) || size!.width < 845
+                    ? Column(children: [
+                        photo(),
+                        const SizedBox(height: 20),
+                        title(),
+                      ])
+                    : Row(
+                        // runSpacing: 20,
+                        // spacing: 20,
+                        // crossAxisAlignment: WrapCrossAlignment.center,
+                        // alignment: WrapAlignment.center,
+                        children: [
+                          const Expanded(
+                            child: SizedBox(height: 220),
+                            flex: 5,
+                          ),
+                          // const SizedBox(width: 20,),
+                          // const Spacer(),
+                          Expanded(
+                            child: title(),
+                            flex: 11,
+                          ),
+                        ],
+                      ),
+              ),
+              BottomContainer(
+                child: Responsive.innerResponsive(
+                  context: context,
+                  mobile: Column(
+                    children: [
+                      about(),
+                      const SizedBox(height: 20),
+                      details(robotoTextStyle!),
+                    ],
+                  ),
+                  tablet: Row(
+                    children: [
+                      Expanded(flex: size!.width > 710 ? 8 : 7, child: about()),
+                      const SizedBox(width: 20),
+                      Expanded(
+                        flex: size!.width >= 650 ? 10 : 8,
+                        child: details(robotoTextStyle!),
+                      ),
+                    ],
+                  ),
+                  desktop: Row(
+                    children: [
+                      Expanded(flex: 8, child: about()),
+                      const SizedBox(width: 20),
+                      Expanded(
+                        flex: 8,
+                        child: details(robotoTextStyle!),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          if (Responsive.isTablet(context) && size!.width > 845 ||
+              Responsive.isDesktop(context))
+            Obx(() {
+              return AnimatedPositioned(
+                duration: const Duration(milliseconds: 250),
+                top: uiController.isHoverProfileImage.value ? 30 : 40,
+                left: 40,
+                child: photo(),
+              );
+            })
+        ],
       ),
     );
   }
@@ -333,17 +320,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     return imageSize;
   }
-  double updateSidePaddingSize(){
-    double sidePadding = 0;
 
-    if(size!.width >= 1100){
-      sidePadding = 20 + (size!.width-1100)/2;
-    }
-    else {
-      sidePadding = 20;
-    }
-    return sidePadding;
-  }
   void onFaceBookClick(){
     AppUrlLauncher().launchFacebook();
   }

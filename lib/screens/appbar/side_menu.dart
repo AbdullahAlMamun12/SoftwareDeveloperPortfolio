@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:portfolio_app/constraints/screen_type.dart';
+import 'package:portfolio_app/controller/ui_contorller.dart';
 import 'package:portfolio_app/extensions.dart';
 import 'package:websafe_svg/websafe_svg.dart';
-
-
 import 'package:flutter/foundation.dart' show kIsWeb;
-
 import '../../constants.dart';
 import '../../responsive.dart';
 
-class SideMenu extends StatelessWidget {
+class SideMenu extends GetView<UiController> {
   const SideMenu({
     Key? key,
   }) : super(key: key);
@@ -17,7 +17,7 @@ class SideMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: double.infinity,
-      padding: const EdgeInsets.only(top: kIsWeb ? cDefaultPadding : 0),
+      padding: EdgeInsets.only(top: kIsWeb ? cDefaultPadding : 0),
       color: cMainColor,
       child: SafeArea(
         child: SingleChildScrollView(
@@ -58,7 +58,10 @@ class SideMenu extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 color: cMainColor,
-                onPressed: () {},
+                onPressed: () {
+                  controller.screenType.value = MainScreenType.HOME;
+                  Get.back();
+                },
                 icon: WebsafeSvg.asset("assets/Icons/Download.svg", width: 16),
                 label: const Text(
                   "Home",
@@ -75,7 +78,10 @@ class SideMenu extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 color: cMainColor,
-                onPressed: () {},
+                onPressed: () {
+                  controller.screenType.value = MainScreenType.RESUME;
+                  Get.back();
+                },
                 icon: WebsafeSvg.asset("assets/Icons/Download.svg", width: 16),
                 label: const Text(
                   "Resume",

@@ -1,0 +1,4 @@
+enum MainScreenType{
+  HOME,
+  RESUME
+}
